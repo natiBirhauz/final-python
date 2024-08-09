@@ -15,14 +15,14 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build Docker Image
-        uses: docker build . --file Dockerfile -tag natiBirhauz/final-python:${{ github.run_number }} - ${{ github.sha }}
+        run: docker build . --file Dockerfile -tag natiBirhauz/final-python:${{ github.run_number }} - ${{ github.sha }}
   
       # - name: Set up Docker Buildx
       #   uses: docker/setup-buildx-action@v2
 
       - name: Log in to Docker Hub
-        uses: docker login -u ${{ secrets.DOCKERHUB_USER }} -p ${{ sercrets.DOCKERHUB_PASS }} 
+        run: docker login -u ${{ secrets.DOCKERHUB_USER }} -p ${{ sercrets.DOCKERHUB_PASS }} 
 
       - name: Push to Docker Hub registery
-        uses: docker push natiBirhauz/final-python:${{ github.run_number }} - ${{ github.sha }}
+        run: docker push natiBirhauz/final-python:${{ github.run_number }} - ${{ github.sha }}
     
