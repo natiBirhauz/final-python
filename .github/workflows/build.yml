@@ -22,5 +22,5 @@ jobs:
         run: docker buildx build --file Dockerfile --tag natiBirhauz/final-python:${{ github.run_number }}-${{ github.sha }} .
 
       - name: Push Docker Image to Docker Hub
-        run: docker push natiBirhauz/final-python:${{ github.run_number }}-${{ github.sha }}
+        run: docker push docker.io/natiBirhauz/final-python:${{ github.run_number }}-${{ github.sha }}
   
