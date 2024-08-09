@@ -19,8 +19,8 @@ jobs:
         run: echo "${{ secrets.DOCKERHUB_PASS }}" | docker login -u "${{ secrets.DOCKERHUB_USER }}" --password-stdin
 
       - name: Build Docker Image
-        run: docker buildx build --file Dockerfile --tag natibirhauz/final-python:${{ github.run_number }}-${{ github.sha }} .
+        run: docker buildx build --file Dockerfile --tag doronch14/final-python:${{ github.run_number }}-${{ github.sha }} .
 
       - name: Push Docker Image to Docker Hub
-        run: docker push natibirhauz/final-python:${{ github.run_number }}-${{ github.sha }}
+        run: docker push doronch14/final-python:${{ github.run_number }}-${{ github.sha }}
   
