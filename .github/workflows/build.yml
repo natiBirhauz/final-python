@@ -1,0 +1,28 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build the image using Dockerfile
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker Image
+        uses: docker build . --file Dockerfile -tag natiBirhauz/final-python:${{ github.run_number }} - ${{ github.sha }}
+  
+      # - name: Set up Docker Buildx
+      #   uses: docker/setup-buildx-action@v2
+
+      - name: Log in to Docker Hub
+        uses: docker login -u ${{ secrets.DOCKERHUB_USER }} -p ${{ sercrets.DOCKERHUB_PASS }} 
+
+      - name: Push to Docker Hub registery
+        uses: docker push natiBirhauz/final-python:${{ github.run_number }} - ${{ github.sha }}
+    
