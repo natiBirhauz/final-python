@@ -1,11 +1,17 @@
 FROM python:3.7
 
-WORKDIR /src/app
+WORKDIR /usr/src/app
 
-COPY . .
+RUN pip install --no-cache-dir pipenv
 
 RUN pip install -r requirements.txt
 
-EXPOSE 8080
+COPY Pipfile Pipfile.lock ./
 
-CMD ["python", "app.py"]
+RUN pipenv install --deploy --ignore-pipfile
+
+COPY . .
+
+EXPOSE 5000
+
+CMD ["pipenv", "run", "python", "app.py"]
