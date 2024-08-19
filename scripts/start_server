@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo docker run -d -p --name container 80:5000 doronch14/final_python
+sudo docker run -d --name container -p 80:5000 doronch14/final-python
